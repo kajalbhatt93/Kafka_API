@@ -11,6 +11,7 @@ object API_to_KafkaDia
       .appName("My Spark Application")
       .master("local[*]")
       .getOrCreate()
+
     while (true) {
       import spark.implicits._
       val apiUrl = "http://127.0.0.1:7071/api"
@@ -33,4 +34,4 @@ object API_to_KafkaDia
 
 }
 
-// spark-submit --master local[*] --packages "org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.7","com.lihaoyi:requests_2.11:0.7.1" --class kafkaspark.ReadFromKafka target/ScalaSparkKafka-1.0-SNAPSHOT.jar
+// spark-submit --master local[*] --packages "org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.7","com.lihaoyi:requests_2.11:0.7.1" --class url_topic.API_to_KafkaDia target/Kafka_API-1.0-SNAPSHOT.jar
