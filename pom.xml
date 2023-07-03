@@ -78,7 +78,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>url_topic.KAAP</mainClass>
+                            <mainClass>url_topic.API_to_KafkaDia</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
