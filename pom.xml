@@ -10,7 +10,7 @@
 
 <properties>
     <scala.version>2.11.12</scala.version>
-    <!--    Addedd to add spark version details-->
+    <!--    Added to add spark version details-->
     <scala.binary.version>2.12</scala.binary.version>
     <spark.version>2.4.7</spark.version>
 </properties>
