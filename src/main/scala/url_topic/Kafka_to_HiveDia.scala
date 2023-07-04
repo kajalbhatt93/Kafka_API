@@ -52,13 +52,11 @@ object Kafka_to_HiveDia
       .select(from_json(col("value").cast("string"), schema).as("data"))
       .selectExpr("data.*")
 
-    // Write the DataFrame to a Hive external table
+    // Write the DataFrame as CSV files
     df.writeStream
-      .format("hive")
+      .format("csv")
       .option("checkpointLocation", "/tmp/jenkins/kafka/heal/checkpoint")
       .option("path", "/tmp/jenkins/kafka/heal/data")
-      .option("table", "health") // Specify the name of your Hive external table
-      .option("metastore.catalog.default", "hive") // Specify the catalog to use
       .start()
       .awaitTermination()
   }
