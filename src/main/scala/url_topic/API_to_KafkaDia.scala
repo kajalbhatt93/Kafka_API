@@ -16,7 +16,7 @@ object API_to_KafkaDia
     {
       import spark.implicits._
 
-      val apiUrl = "http://3.9.191.104:7071/api"
+      val apiUrl = "http://127.0.0.1:7071/api"
       val response = get(apiUrl, headers = headers)
       val total = response.text()
       val dfFromText = spark.read.json(Seq(total).toDS)
