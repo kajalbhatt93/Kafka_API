@@ -63,5 +63,6 @@ object Kafka_to_CSVDia
 
 
 }
+//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/*
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal/
 // hdfs dfs -ls /tmp/jenkins/kafka/heal/
