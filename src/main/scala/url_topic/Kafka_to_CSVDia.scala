@@ -71,10 +71,12 @@ CREATE EXTERNAL TABLE sample.Health(Age INT,BMI FLOAT,BloodGlucose_Level INT,Dia
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION '/tmp/jenkins/kafka/heal/data/part-00000-136125a6-642b-420a-ac36-9ab49241bc11-c000.csv';*/
+LOCATION '/tmp/jenkins/kafka/heal/data/part-00000-136125a6-642b-420a-ac36-9ab49241bc11-c000.csv';
+*/
 /*
 create external table sample.daibetic_hist(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
 row format delimited
 fields terminated by ','
 stored as textfile
-location '/ tmp / kajal / postNifi /';*/
+location '/tmp/kajal/postNifi/';
+*/
