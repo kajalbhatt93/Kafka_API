@@ -1,0 +1,36 @@
+from flask import Flask, jsonify
+import pandas as pd
+
+app = Flask(__name__)
+
+
+# Define an API endpoint
+@app.route('/api', methods=['GET'])
+def api_endpoint():
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv(r'/home/ec2-user/kajal/api/Daibetic_kakfa1.csv')
+
+    # Process the DataFrame and return a response
+    processed_data = process_dataframe(df)
+    # response = {'shape': df.shape, 'data': processed_data}
+    return jsonify(processed_data)
+
+
+def process_dataframe(df):
+    # Perform your DataFrame processing operations here
+    # For demonstration purposes, let's simply return the first few rows
+    data = df.to_dict(orient='records')
+    return data
+
+
+if __name__ == '__main__':
+    # Start the Flask development server
+    app.run(debug=True, host='0.0.0.0', port=7071)
+
+
+
+Mobaxtrem : python api_csv.py
+chrome : http://3.9.191.104:7071/api
+
+
+
