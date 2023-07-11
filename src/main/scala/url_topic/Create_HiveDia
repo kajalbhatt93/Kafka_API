@@ -1,0 +1,19 @@
+
+"Age": 80,
+    "BMI": 25.19,
+    "BloodGlucose_Level": 140,
+    "Diabetes": 0,
+    "Gender": "Female",
+    "HbA1c_Level": 6.6,
+    "Heart_Disease": 1,
+    "Hypertension": 0,
+    "ID": 1,
+    "Name": "Dakota Simmons",
+    "Smoking_History": "never"
+
+
+create external table sample.daibetic_kafka(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
+row format delimited
+fields terminated by ','
+stored as textfile
+location /tmp/jenkins/kafka/heal/data/';
