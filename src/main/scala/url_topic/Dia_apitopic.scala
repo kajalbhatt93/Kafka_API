@@ -31,3 +31,8 @@ object Dia_apitopic {
   }
 
 }
+
+// kafka-topics --bootstrap-server ip-172-31-14-3.eu-west-2.compute.internal:9092,ip-172-31-3-80.eu-west-2.compute.internal:9092,ip-172-31-5-217.eu-west-2.compute.internal:9092,ip-172-31-13-101.eu-west-2.compute.internal:9092, ip-172-31-9-237.eu-west-2.compute.internal:9092 --create --topic daibetics
+// sudo su hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/checkpoint/*
+// sudo -u hdfs hdfs dfs -rm -R /tmp/jenkins/kafka/heal/checkpoint/*
+// spark-submit --master local[*] --packages "org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.7","com.lihaoyi:requests_2.11:0.7.1" --class url_topic.Dia_apitopic target/Kafka_API-1.0-SNAPSHOT.jar
