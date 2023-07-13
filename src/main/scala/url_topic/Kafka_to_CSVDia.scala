@@ -23,7 +23,7 @@ object Kafka_to_CSVDia
     )
 
     // Define the Kafka topic to subscribe to
-    val topic = "test_kj"
+    val topic = "daibetics"
 
     //ID	Name	Gender	Age	Hypertension	Heart_Disease	Smoking_History	BMI	HbA1c_Level	BloodGlucose_Level	Diabetes
 

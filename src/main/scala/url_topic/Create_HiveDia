@@ -17,3 +17,7 @@ row format delimited
 fields terminated by ','
 stored as textfile
 location /tmp/jenkins/kafka/heal/data/';
+
+
+hdfs dfs -ls /tmp/kajal/postNifi/
+hdfs dfs -rm -r /tmp/kajal/postNifi/*
