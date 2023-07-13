@@ -44,26 +44,12 @@ object Kafka_to_CSVDia
 
 
     // Read the JSON messages from Kafka as a DataFrame
-    val df = spark.readStream
-      .format("kafka")
-      .option("kafka.bootstrap.servers", "ip-172-31-3-80.eu-west-2.compute.internal:9092")
-      .option("subscribe", topic)
-      .option("startingOffsets", "earliest")
-      .load()
-      .select(from_json(col("value").cast("string"), schema).as("data"))
-      .selectExpr("data.*")
+    val df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "ip-172-31-3-80.eu-west-2.compute.internal:9092").option("subscribe", topic).option("startingOffsets", "earliest").load().select(from_json(col("value").cast("string"), schema).as("data")).selectExpr("data.*")
 
-    df.show(10)
+    // Write the DataFrame as CSV files to HDFS
+    df.writeStream.format("csv").option("checkpointLocation", "/tmp/jenkins/kafka/emp_data/checkpoint").option("path", "/tmp/jenkins/kafka/emp_data/data").start().awaitTermination()
 
-    // Write the DataFrame as CSV files
-    df.writeStream
-      .format("csv")
-      .option("checkpointLocation", "/tmp/jenkins/kafka/heal/checkpoint")
-      .option("path", "/tmp/jenkins/kafka/heal/data")
-      .start()
-      .awaitTermination()
   }
-
 
 }
 //sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/*
