@@ -42,6 +42,7 @@ object Kafka_to_CSVDia
       StructField("Diabetes", StringType, nullable = true)
     ))
 
+
     // Read the JSON messages from Kafka as a DataFrame
     val df = spark.readStream
       .format("kafka")
@@ -51,6 +52,8 @@ object Kafka_to_CSVDia
       .load()
       .select(from_json(col("value").cast("string"), schema).as("data"))
       .selectExpr("data.*")
+
+    df.show(10)
 
     // Write the DataFrame as CSV files
     df.writeStream
@@ -67,11 +70,12 @@ object Kafka_to_CSVDia
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal/*
 // hdfs dfs -ls /tmp/jenkins/kafka/heal/
 /*
-CREATE EXTERNAL TABLE sample.Health(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
+use sample;
+CREATE EXTERNAL TABLE sample.dai_realtime(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION '/tmp/jenkins/kafka/heal/data/part-00000-136125a6-642b-420a-ac36-9ab49241bc11-c000.csv';
+LOCATION '/tmp/jenkins/kafka/heal/data/part-00000-b664ce45-14cc-4eca-9d88-12885113e55d-c000.csv';
 */
 /*
 create external table sample.daibetic_hist(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
