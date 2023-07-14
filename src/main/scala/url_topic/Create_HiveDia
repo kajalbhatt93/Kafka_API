@@ -12,7 +12,7 @@
     "Smoking_History": "never"
 
 
-create external table sample.daibetic_kafka(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
+create external table sample.daibetic_kafka(Age INT,BMI FLOAT,BloodGlucose_Level INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
 row format delimited
 fields terminated by ','
 stored as textfile

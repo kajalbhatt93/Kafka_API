@@ -30,7 +30,7 @@ object Dai_topiccsv {
       StructField("Age", StringType, nullable = true),
       StructField("BMI", StringType, nullable = true),
       StructField("BloodGlucose_Level", StringType, nullable = true),
-      StructField("Diabetes", StringType, nullable = true),
+      //StructField("Diabetes", StringType, nullable = true),
       StructField("Gender", StringType, nullable = true),
       StructField("HbA1c_Level", StringType, nullable = true),
       StructField("Heart_Disease", StringType, nullable = true),
@@ -66,7 +66,7 @@ CREATE EXTERNAL TABLE sample.dai_realtime(Age INT,BMI FLOAT,BloodGlucose_Level I
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION '/tmp/jenkins/kafka/heal/data/part-00000-b664ce45-14cc-4eca-9d88-12885113e55d-c000.csv';
+LOCATION '/tmp/jenkins/kafka/daibetic/data/';
 */
 /*
 create external table sample.daibetic_hist(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)

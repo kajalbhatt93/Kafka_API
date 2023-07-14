@@ -18,7 +18,8 @@ object Dia_apitopic {
       val total = response.text()
       val dfFromText = spark.read.json(Seq(total).toDS)
 
-      val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Diabetes", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
+      //val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Diabetes", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
+      val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
       messageDF.show(10)
 
       val kafkaServer: String = "ip-172-31-3-80.eu-west-2.compute.internal:9092"
