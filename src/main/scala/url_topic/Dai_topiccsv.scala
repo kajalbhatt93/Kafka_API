@@ -56,13 +56,14 @@ object Dai_topiccsv {
       .awaitTermination()
   }
 }
+//62.0,36.39,85,Female,6.1,0,0,60001,Luna Milner,never
 
-//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/*
+//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/daibetic/*
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/daibetic/*
 // hdfs dfs -ls /tmp/jenkins/kafka/heal/
 /*
 use sample;
-CREATE EXTERNAL TABLE sample.dai_realtime(Age INT,BMI FLOAT,BloodGlucose_Level INT,Diabetes INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
+CREATE EXTERNAL TABLE sample.Realtime_Daibetic(Age INT,BMI FLOAT,BloodGlucose_Level INT,Gender STRING,HbA1c_Level FLOAT,Heart_Disease INT,Hypertension INT,ID INT,Name STRING,Smoking_History STRING)
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
