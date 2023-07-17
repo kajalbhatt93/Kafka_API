@@ -63,3 +63,23 @@ object Dai_typcast {
 //sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/graph/*
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/graph/*
 // hdfs dfs -ls /tmp/jenkins/kafka/heal/
+/*CREATE EXTERNAL TABLE sample.typcast (
+  Age INT,
+  BMI INT,
+  BloodGlucose_Level INT,
+  Gender STRING,
+  HbA1c_Level INT,
+  Heart_Disease INT,
+  Hypertension INT,
+  ID INT,
+  Name STRING,
+  Smoking_History STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/tmp/jenkins/kafka/graph/data'
+TBLPROPERTIES ("csv.input.fileextension"=".csv");*/
+
+
+
