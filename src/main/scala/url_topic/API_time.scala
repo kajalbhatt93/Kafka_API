@@ -17,7 +17,7 @@ object API_time
 
     val apiUrl = "http://3.9.191.104:7071/api"
     val kafkaServer: String = "ip-172-31-3-80.eu-west-2.compute.internal:9092"
-    val topicSampleName: String = "daibetics"
+    val topicSampleName: String = "aaaatest"
 
     var lastProcessedID: String = ""
 
