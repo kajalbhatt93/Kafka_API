@@ -35,14 +35,7 @@ object API_time
         lastProcessedID = maxID
       }
 
-      messageDF
-        .selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
-        .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
-        .write
-        .format("kafka")
-        .option("kafka.bootstrap.servers", kafkaServer)
-        .option("topic", topicSampleName)
-        .save()
+      messageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
 
       Thread.sleep(2.minutes.toMillis) // Wait for 2 minutes before making the next API call and pushing to Kafka
     }
