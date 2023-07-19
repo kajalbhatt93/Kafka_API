@@ -24,34 +24,28 @@ object API_time {
       val total = response.text()
       val dfFromText = spark.read.json(Seq(total).toDS)
       val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
+
       messageDF.show(10)
 
-      messageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
-        .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
-        .write.format("kafka")
-        .option("kafka.bootstrap.servers", kafkaServer)
-        .option("topic", topicSampleName)
-        .save()
-
-      val newMessageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
-        .filter($"ID" > lastProcessedID)
+      val newMessageDF = messageDF.filter($"ID" > lastProcessedID)
 
       if (!newMessageDF.isEmpty) {
         val maxID = newMessageDF.select(max($"ID")).first().getString(0)
         lastProcessedID = maxID
-      }
 
-      newMessageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
-        .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
-        .write.format("kafka")
-        .option("kafka.bootstrap.servers", kafkaServer)
-        .option("topic", topicSampleName)
-        .save()
+        newMessageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
+          .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+          .write.format("kafka")
+          .option("kafka.bootstrap.servers", kafkaServer)
+          .option("topic", topicSampleName)
+          .save()
+      }
 
       //Thread.sleep(2.minutes.toMillis) // Wait for 2 minutes before making the next API call and pushing to Kafka
     }
   }
 }
+
 
 //spark-submit --master local[*] --packages "org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.7","com.lihaoyi:requests_2.11:0.7.1" --class url_topic.API_time target/Kafka_API-1.0-SNAPSHOT.jar
 //kafka-topics --bootstrap-server ip-172-31-14-3.eu-west-2.compute.internal:9092,ip-172-31-3-80.eu-west-2.compute.internal:9092,ip-172-31-5-217.eu-west-2.compute.internal:9092,ip-172-31-13-101.eu-west-2.compute.internal:9092, ip-172-31-9-237.eu-west-2.compute.internal:9092 --create --topic aaaatest
