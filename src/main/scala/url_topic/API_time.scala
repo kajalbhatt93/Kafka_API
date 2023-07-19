@@ -41,7 +41,7 @@ object API_time {
           .save()
       }
 
-      //Thread.sleep(2.minutes.toMillis) // Wait for 2 minutes before making the next API call and pushing to Kafka
+      Thread.sleep(2.minutes.toMillis) // Wait for 2 minutes before making the next API call and pushing to Kafka
     }
   }
 }
