@@ -31,7 +31,7 @@ object API_time {
       if (!messageDF.isEmpty)
       {
         val newMessageDF = messageDF.filter($"ID" > lastProcessedID)
-        val maxID = newMessageDF.select(max($"ID")).first().getString(0)
+        val maxID = newMessageDF.select(max($"ID")).first().getLong(0).toString
         lastProcessedID = maxID
 
         newMessageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
