@@ -19,17 +19,18 @@ object API_time {
     val topicSampleName: String = "aaaatest"
     var lastProcessedID: String = "60000"
 
-    while (true) {
+    // Define the number of iterations you want to run the loop
+    val numIterations = 5 // For example, run the loop 5 times.
+
+    for (_ <- 1 to numIterations) {
       val response = get(apiUrl, headers = headers)
       val total = response.text()
       val dfFromText = spark.read.json(Seq(total).toDS)
       val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
 
-      messageDF.show(10)
-
-      val newMessageDF = messageDF.filter($"ID" > lastProcessedID)
-
-      if (!newMessageDF.isEmpty) {
+      if (!messageDF.isEmpty)
+      {
+        val newMessageDF = messageDF.filter($"ID" > lastProcessedID)
         val maxID = newMessageDF.select(max($"ID")).first().getString(0)
         lastProcessedID = maxID
 
