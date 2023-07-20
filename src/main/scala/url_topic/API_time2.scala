@@ -3,7 +3,7 @@ package url_topic
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
-import scala.concurrent.duration._
+
 object API_time2
 {
   def main(args: Array[String]): Unit = {
@@ -56,7 +56,6 @@ object API_time2
         .start()
         .awaitTermination()
 
-      Thread.sleep(2.minutes.toMillis)
 
 
   }
@@ -64,5 +63,5 @@ object API_time2
 }
 // hdfs dfs -ls /tmp/jenkins/kafka/heal/
 // sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal
+//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/*
 // sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal/*
-//
