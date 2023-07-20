@@ -12,37 +12,26 @@ object API_time {
       .master("local[*]")
       .getOrCreate()
 
-    import spark.implicits._
-
-    val apiUrl = "http://3.9.191.104:7071/api"
-    val kafkaServer: String = "ip-172-31-3-80.eu-west-2.compute.internal:9092"
-    val topicSampleName: String = "aaaatest"
-    var lastProcessedID: String = "60000"
-
-    // Define the number of iterations you want to run the loop
-    val numIterations = 5 // For example, run the loop 5 times.
+    val numIterations = 5
 
     for (_ <- 1 to numIterations) {
+
+
+      import spark.implicits._
+
+      val apiUrl = "http://3.9.191.104:7071/api"
       val response = get(apiUrl, headers = headers)
       val total = response.text()
       val dfFromText = spark.read.json(Seq(total).toDS)
       val messageDF = dfFromText.select($"Age", $"BMI", $"BloodGlucose_Level", $"Gender", $"HbA1c_Level", $"Heart_Disease", $"Hypertension", $"ID", $"Name", $"Smoking_History")
+      messageDF.show(10)
 
-      if (!messageDF.isEmpty)
-      {
-        val newMessageDF = messageDF.filter($"ID" > lastProcessedID)
-        val maxID = newMessageDF.select(max($"ID")).first().getLong(0).toString
-        lastProcessedID = maxID
+      val kafkaServer: String = "ip-172-31-3-80.eu-west-2.compute.internal:9092"
+      val topicSampleName: String = "aaaatest"
 
-        newMessageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value")
-          .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
-          .write.format("kafka")
-          .option("kafka.bootstrap.servers", kafkaServer)
-          .option("topic", topicSampleName)
-          .save()
-      }
+      messageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
 
-      Thread.sleep(1.minutes.toMillis) // Wait for 2 minutes before making the next API call and pushing to Kafka
+      Thread.sleep(2.minutes.toMillis)
     }
   }
 }
