@@ -41,9 +41,7 @@ object API_time2
     ))
     print(schema)
 
-    val numIterations = 5
 
-    for (_ <- 1 to numIterations) {
       // Read the JSON messages from Kafka as a DataFrame
       val df = spark.readStream.format("kafka")
         .option("kafka.bootstrap.servers", "ip-172-31-3-80.eu-west-2.compute.internal:9092")
@@ -60,7 +58,7 @@ object API_time2
 
       Thread.sleep(2.minutes.toMillis)
 
-    }
+
   }
 
 }
