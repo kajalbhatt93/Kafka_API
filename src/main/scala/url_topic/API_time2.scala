@@ -68,7 +68,7 @@ object API_time2
 
 /*
 use sample;
-CREATE EXTERNAL TABLE sample.realtime_diabetic1 (
+CREATE EXTERNAL TABLE sample.real (
   Age float,
   BMI float,
   BloodGlucose_Level int,
