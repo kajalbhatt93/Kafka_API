@@ -65,3 +65,24 @@ object API_time2
 // sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal
 //sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/heal/*
 // sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/heal/*
+
+/*
+use sample;
+CREATE EXTERNAL TABLE sample.realtime_daibetic (
+  Age STRING,
+  BMI STRING,
+  BloodGlucose_Level STRING,
+  Gender STRING,
+  HbA1c_Level STRING,
+  Heart_Disease STRING,
+  Hypertension STRING,
+  ID STRING,
+  Name STRING,
+  Smoking_History STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/tmp/jenkins/kafka/daibetic/data'
+TBLPROPERTIES ("csv.input.fileextension"=".csv");
+*/
