@@ -69,3 +69,4 @@ fields terminated by ','
 stored as textfile
 location '/tmp/kajal/postNifi/';
 */
+

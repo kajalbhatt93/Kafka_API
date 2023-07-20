@@ -12,7 +12,7 @@ object API_time {
       .master("local[*]")
       .getOrCreate()
 
-    val numIterations = 5
+    val numIterations = 4
 
     for (_ <- 1 to numIterations) {
 

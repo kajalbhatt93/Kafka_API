@@ -68,21 +68,24 @@ object API_time2
 
 /*
 use sample;
-CREATE EXTERNAL TABLE sample.realtime_daibetic (
-  Age STRING,
-  BMI STRING,
-  BloodGlucose_Level STRING,
+CREATE EXTERNAL TABLE sample.realtime_diabetic1 (
+  Age float,
+  BMI float,
+  BloodGlucose_Level int,
   Gender STRING,
-  HbA1c_Level STRING,
-  Heart_Disease STRING,
-  Hypertension STRING,
-  ID STRING,
+  HbA1c_Level float,
+  Heart_Disease int,
+  Hypertension int,
+  ID int,
   Name STRING,
   Smoking_History STRING
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION '/tmp/jenkins/kafka/daibetic/data'
+LOCATION '/tmp/jenkins/kafka/heal/data'
 TBLPROPERTIES ("csv.input.fileextension"=".csv");
 */
+// crontab -e
+
+//  */5 * * * * impala-shell -i ip-172-31-14-3.eu-west-2.compute.internal -d default -q "invalidate metadata"
