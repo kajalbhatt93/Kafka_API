@@ -60,7 +60,7 @@ object Dai_topiccsv {
 
 //sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/daibetic/*
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/daibetic/*
-// hdfs dfs -ls /tmp/jenkins/kafka/heal/
+// hdfs dfs -ls /tmp/jenkins/kafka/daibetic/
 /*
 use sample;
 CREATE EXTERNAL TABLE sample.realtime_diabetic (
