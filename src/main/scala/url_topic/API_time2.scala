@@ -68,7 +68,7 @@ object API_time2
 
 /*
 use sample;
-CREATE EXTERNAL TABLE sample.real (
+CREATE EXTERNAL TABLE sample.real_dai1 (
   Age float,
   BMI float,
   BloodGlucose_Level int,
@@ -83,7 +83,7 @@ CREATE EXTERNAL TABLE sample.real (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-LOCATION '/tmp/jenkins/kafka/heal/data'
+LOCATION '/tmp/jenkins/kafka/heal/data/'
 TBLPROPERTIES ("csv.input.fileextension"=".csv");
 */
 // crontab -e

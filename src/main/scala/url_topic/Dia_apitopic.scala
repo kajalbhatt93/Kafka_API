@@ -31,8 +31,8 @@ object Dia_apitopic {
 
       messageDF.selectExpr("CAST(ID AS STRING) AS key", "to_json(struct(*)) AS value").selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").write.format("kafka").option("kafka.bootstrap.servers", kafkaServer).option("topic", topicSampleName).save()
 
-      print("######  Sleeping for 3 min ######")
-      Thread.sleep(3.minutes.toMillis)
+      print("######  Sleeping for 1 min ######")
+      Thread.sleep(1.minutes.toMillis)
     }
 }
 
