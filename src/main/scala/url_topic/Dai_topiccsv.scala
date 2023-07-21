@@ -58,7 +58,7 @@ object Dai_topiccsv {
 }
 //62.0,36.39,85,Female,6.1,0,0,60001,Luna Milner,never
 
-//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/daibetic/*
+//sudo -u hdfs hdfs dfs -rm -r /tmp/jenkins/kafka/daibetic/data/*
 //sudo -u hdfs hdfs dfs -chmod 777 /tmp/jenkins/kafka/daibetic/*
 // hdfs dfs -ls /tmp/jenkins/kafka/daibetic/
 /*

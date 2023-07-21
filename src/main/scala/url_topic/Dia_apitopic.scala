@@ -11,7 +11,7 @@ object Dia_apitopic {
       .appName("My Spark Application")
       .master("local[*]")
       .getOrCreate()
-    val numIterations = 4
+    val numIterations = 10
 
     for (_ <- 1 to numIterations)
     {
