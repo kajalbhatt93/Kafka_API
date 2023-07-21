@@ -92,3 +92,15 @@ location '/tmp/kajal/postNifi/';
 // every 1min
 // crontab -e
 // * * * * * impala-shell -i ip-172-31-14-3.eu-west-2.compute.internal -d default -q "INVALIDATE METADATA;"
+/*    vi in_val.sh
+
+      #!/bin/bash
+      while true; do
+          impala-shell -i ip-172-31-14-3.eu-west-2.compute.internal -d default -q "INVALIDATE METADATA;"
+          sleep 5
+      done
+
+
+to run the script :  chmod +x in_val.sh
+                      bash in_val.sh &
+ */
